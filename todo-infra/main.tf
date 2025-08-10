@@ -1,7 +1,7 @@
 module "resource_group_name" {
   source = "../module/azurerm_rg"
 
-  rg_name  = "polaris_rgroup"
+  rg_name  = "polaris_rgroup1"
   location = "Japan East"
 }
 
@@ -12,7 +12,7 @@ module "vnet" {
   virtual_network_name = "polaris_vnet"
   address_space        = ["192.168.0.0/16"]
   location             = "Japan East"
-  rg_name              = "polaris_rgroup"
+  rg_name              = "polaris_rgroup1"
 }
 
 variable "subnet_config" {
