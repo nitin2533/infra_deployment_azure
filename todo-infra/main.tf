@@ -45,7 +45,7 @@ module "subnet" {
   rg_name              = "polaris_rgroup"
   virtual_network_name = "polaris_vnet"
   address_prefixes     = ["192.168.2.0/24"]
-}*/
+}
 
 variable "pip" {
   type = map(string)
@@ -64,13 +64,13 @@ module "public_ip" {
   rg_name    = "polaris_rgroup"
 }
 
-/*module "public_ip_backend" {
+module "public_ip_backend" {
   source     = "./azurerm_public-ip"
   depends_on = [module.resource_group_name]
   name       = "polaris_pip_backend"
  location   = "Japan East"
   rg_name    = "polaris_rgroup"
-}*/
+}
 
 variable "nic_config" {
   type = map(any)
@@ -98,7 +98,7 @@ module "nic" {
   public_ip            = each.value.public_ip
   virtual_network_name = "polaris_vnet"
 }
-/*module "nic-backend" {
+module "nic-backend" {
   source               = "./azurerm_nic"
   depends_on           = [module.subnet_backend, module.public_ip_backend]
   name                 = "nic-backend"
@@ -107,7 +107,7 @@ module "nic" {
   subnet               = "polaris_subnet_backend"
   public_ip            = "polaris_pip_backend"
   virtual_network_name = "polaris_vnet"
-}*/
+}
 
 variable "vm_config" {
   type = map(any)
@@ -160,7 +160,7 @@ module "virtual_machine" {
   custom_data            = base64encode(each.value.custom_data)
 }
 
-/*module "virtual_machine_backend" {
+module "virtual_machine_backend" {
   depends_on = [module.subnet_backend, module.nic-backend]
 
   source = "./azurerm_vm"
@@ -183,7 +183,7 @@ module "virtual_machine" {
               sudo apt install -y python3 python3-pip
               EOF
   )
-} */
+} 
 
 module "server" {
   depends_on      = [module.resource_group_name]
@@ -202,4 +202,4 @@ module "database" {
   sql_database_name = "polaris-database"
   sql_server_name   = "polaris-server"
   rg_name           = "polaris_rgroup"
-}
+}*/
