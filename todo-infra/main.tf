@@ -33,7 +33,7 @@ module "subnet" {
   depends_on           = [module.vnet]
   source               = "../module/azurerm_subnet"
   name                 = each.value.name
-  rg_name              = "polaris_rgroup"
+  rg_name              = "polaris_rgroup1"
   virtual_network_name = "polaris_vnet"
   address_prefixes     = each.value.address_prefixes
 }
