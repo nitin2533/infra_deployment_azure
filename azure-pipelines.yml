@@ -6,8 +6,7 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+pool: abhi-agents
 
 steps:
 - task: TerraformInstaller@1
