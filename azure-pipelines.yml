@@ -21,3 +21,19 @@ steps:
     backendAzureRmStorageAccountName: 'bhmstorage234'
     backendAzureRmContainerName: 'bhmtf'
     backendAzureRmKey: 'tf1.tfstate'
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'validate'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/todo-infra'
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    environmentServiceNameAzureRM: 'todo-service-connection'
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    environmentServiceNameAzureRM: 'todo-service-connection'
+
