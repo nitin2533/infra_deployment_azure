@@ -4,6 +4,12 @@ module "resource_group_name" {
   rg_name  = "polaris_rgroup1"
   location = "Japan East"
 }
+module "resource_group_name101" {
+  source = "../module/azurerm_rg"
+
+  rg_name  = "polaris_rgroup101"
+  location = "Japan East"
+}
 
 module "vnet" {
   depends_on = [module.resource_group_name]
