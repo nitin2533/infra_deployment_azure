@@ -1,7 +1,7 @@
 module "resource_group_name" {
   source = "../module/azurerm_rg"
 
-  rg_name  = "polaris_rgroup1"
+  rg_name  = "atlanta_rgroup1"
   location = "Japan East"
 }
 
@@ -9,21 +9,21 @@ module "vnet" {
   depends_on = [module.resource_group_name]
   source     = "../module/azurerm_vnet"
 
-  virtual_network_name = "polaris_vnet"
+  virtual_network_name = "atlanta_vnet"
   address_space        = ["192.168.0.0/16"]
   location             = "Japan East"
-  rg_name              = "polaris_rgroup1"
+  rg_name              = "atlanta_rgroup1"
 }
 
 variable "subnet_config" {
   type = map(any)
   default = {
     "frontend" = {
-      name             = "polaris_subnet_frontend"
+      name             = "atlanta_subnet_frontend"
       address_prefixes = ["192.168.1.0/24"]
     }
     "backend" = {
-      name             = "polaris_subnet_backend"
+      name             = "atlanta_subnet_backend"
       address_prefixes = ["192.168.2.0/24"]
     }
   }
@@ -33,8 +33,8 @@ module "subnet" {
   depends_on           = [module.vnet]
   source               = "../module/azurerm_subnet"
   name                 = each.value.name
-  rg_name              = "polaris_rgroup1"
-  virtual_network_name = "polaris_vnet"
+  rg_name              = "atlanta_rgroup1"
+  virtual_network_name = "atlanta_vnet"
   address_prefixes     = each.value.address_prefixes
 }
 
