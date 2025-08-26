@@ -6,12 +6,12 @@ terraform {
       version = "4.0.0"
     }
   }
- /* backend "azurerm" {
+ backend "azurerm" {
     resource_group_name  = "polarish-tfstate-rg"
     storage_account_name = "polarishsa"
     container_name       = "tfstate"
     key                  = "terraform.tfstate"
-}*/
+}
 }
 
 provider "azurerm" {
