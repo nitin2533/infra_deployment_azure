@@ -28,6 +28,7 @@ variable "subnet_config" {
     }
   }
 }
+#module#
 module "subnet" {
   for_each             = var.subnet_config
   depends_on           = [module.vnet]
